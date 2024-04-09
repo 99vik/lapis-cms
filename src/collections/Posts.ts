@@ -1,4 +1,5 @@
 import { CollectionConfig } from 'payload/types';
+import revalidateContent from '../hooks/revalidateContent';
 
 const Posts: CollectionConfig = {
   slug: 'posts',
@@ -8,6 +9,10 @@ const Posts: CollectionConfig = {
         return true;
       return false;
     },
+  },
+  hooks: {
+    afterChange: [revalidateContent],
+    afterDelete: [revalidateContent],
   },
   fields: [
     {
